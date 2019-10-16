@@ -1,0 +1,1414 @@
+Debian Stretch with Raspberry Pi Desktop
+DEBIAN STRETCH WITH RASPBERRY PI DESKTOP
+The Raspberry Pi Desktop OS for PC and Mac - based on Debian Stretch
+Version:November 2017
+Release date:2017-11-16
+Kernel version:4.9
+Download Torrent
+Download ISO
+SHA-256:5fdc64e3ededccf940de855c3a52ff801f9e478d003755469e13a0f462535fe8
+================================================
+TOC
+1. Introduction
+2. Building Kodi for the Raspberry Pi
+3. Building Kodi using buildroot environment
+
+-----------------------------------------------------------------------------
+1. Introduction
+-----------------------------------------------------------------------------
+
+You can build Kodi for the Raspberry Pi in different ways. This document
+shows two different methods. The first assumes that you want to run Kodi
+on top of an image like Raspbian, the second shows how to create an entire
+image which includes Linux.
+
+-----------------------------------------------------------------------------
+2. Building Kodi for the Raspberry Pi
+-----------------------------------------------------------------------------
+
+The following steps were tested with Ubuntu 14.04 x64. (Note that building on
+a 32 bit machine requires slightly different setting).
+
+The following commands build for newer Raspberry Pi 2 generation. In order to
+build for the first Raspberry Pi, the commands have to be adapted to use
+`--with-platform=raspberry-pi` instead of `--with-platform=raspberry-pi2`.
+
+    $ sudo apt-get install git autoconf curl g++ zlib1g-dev libcurl4-openssl-dev gawk gperf libtool autopoint swig default-jre
+
+    $ RPI_DEV=$PWD
+    $ git clone https://github.com/raspberrypi/tools
+    $ git clone https://github.com/raspberrypi/firmware
+    $ git clone https://github.com/xbmc/xbmc
+
+    $ mkdir kodi-bcm
+    $ cd xbmc/tools/depends
+    $ ./bootstrap
+    $ ./configure --host=arm-linux-gnueabihf \
+       --prefix=$RPI_DEV/kodi-bcm \
+       --with-toolchain=$RPI_DEV/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf \
+       --with-firmware=$RPI_DEV/firmware \
+       --with-platform=raspberry-pi2 \
+       --build=i686-linux \
+       --disable-debug
+
+    $ make
+    $ cd ../..
+
+    $ make -C tools/depends/target/cmakebuildsys
+    $ cd build
+    $ make
+    $ make install
+
+-----------------------------------------------------------------------------
+3. Building Kodi using buildroot environment
+-----------------------------------------------------------------------------
+
+Installing and setting up the buildroot environment:
+
+Create a top level directory where you checkout Kodi and buildroot.
+
+For example :
+
+    $ mkdir /opt/kodi-raspberrypi
+    $ cd /opt/kodi-raspberrypi
+
+Checkout kodi :
+
+    $ git clone https://github.com/xbmc/xbmc.git kodi
+
+Checkout buildroot :
+
+    $ git clone https://github.com/huceke/buildroot-rbp.git
+
+    $ cd /opt/kodi-raspberrypi/buildroot-rbp
+
+Follow the instructions in README.rbp how to build the system and Kodi.
+================================================
+TOC
+1. Introduction
+2. Building Kodi for the Raspberry Pi
+3. Building Kodi using buildroot environment
+
+-----------------------------------------------------------------------------
+1. Introduction
+-----------------------------------------------------------------------------
+
+You can build Kodi for the Raspberry Pi in different ways. This document
+shows two different methods. The first assumes that you want to run Kodi
+on top of an image like Raspbian, the second shows how to create an entire
+image which includes Linux.
+
+-----------------------------------------------------------------------------
+2. Building Kodi for the Raspberry Pi
+-----------------------------------------------------------------------------
+
+The following steps were tested with Ubuntu 14.04 x64. (Note that building on
+a 32 bit machine requires slightly different setting).
+
+The following commands build for newer Raspberry Pi 2 generation. In order to
+build for the first Raspberry Pi, the commands have to be adapted to use
+`--with-platform=raspberry-pi` instead of `--with-platform=raspberry-pi2`.
+
+    $ sudo apt-get install git autoconf curl g++ zlib1g-dev libcurl4-openssl-dev gawk gperf libtool autopoint swig default-jre
+
+    $ RPI_DEV=$PWD
+    $ git clone https://github.com/raspberrypi/tools
+    $ git clone https://github.com/raspberrypi/firmware
+    $ git clone https://github.com/xbmc/xbmc
+
+    $ mkdir kodi-bcm
+    $ cd xbmc/tools/depends
+    $ ./bootstrap
+    $ ./configure --host=arm-linux-gnueabihf \
+       --prefix=$RPI_DEV/kodi-bcm \
+       --with-toolchain=$RPI_DEV/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf \
+       --with-firmware=$RPI_DEV/firmware \
+       --with-platform=raspberry-pi2 \
+       --build=i686-linux \
+       --disable-debug
+
+    $ make
+    $ cd ../..
+
+    $ make -C tools/depends/target/cmakebuildsys
+    $ cd build
+    $ make
+    $ make install
+
+-----------------------------------------------------------------------------
+3. Building Kodi using buildroot environment
+-----------------------------------------------------------------------------
+
+Installing and setting up the buildroot environment:
+
+Create a top level directory where you checkout Kodi and buildroot.
+
+For example :
+
+    $ mkdir /opt/kodi-raspberrypi
+    $ cd /opt/kodi-raspberrypi
+
+Checkout kodi :
+
+    $ git clone https://github.com/xbmc/xbmc.git kodi
+
+Checkout buildroot :
+
+    $ git clone https://github.com/huceke/buildroot-rbp.git
+
+    $ cd /opt/kodi-raspberrypi/buildroot-rbp
+
+Follow the instructions in README.rbp how to build the system and Kodi.
+================================================================================================
+
+Raspbian Stretch with desktop
+RASPBIAN STRETCH WITH DESKTOP
+Image with desktop based on Debian Stretch
+Version:April 2018
+Release date:2018-04-18
+Kernel version:4.14
+Release notes:Link
+Download Torrent
+Download ZIP
+SHA-256:0e2922e551a895b136f2ea83d1bc0ca71e016e6d50244ba3da52bd764df5d1b6
+================================================================================================
+Raspbian Stretch Lite
+RASPBIAN STRETCH LITE
+Minimal image based on Debian Stretch
+Version:April 2018
+Release date:2018-04-18
+Kernel version:4.14
+Release notes:Link
+Download Torrent
+Download ZIP
+SHA-256:5a0747b2bfb8c8664192831b7dc5b22847718a1cb77639a1f3db3683b242dc96
+================================================================================================
+https://www.youtube.com/watch?v=D7J9FeqqW6Q(part1)
+https://www.youtube.com/watch?v=0eca6K-G9OE(part2)
+https://www.youtube.com/watch?v=9Y-mLnCrHh4(part3)
+================================================
+Compiling Shared Libraries(ffmpeg in raspberry pi 3)
+
+The configure script generates the makefile, which contains commands to actually compile an executable or library file.
+
+As the name suggests, the purpose of the script is to customise the software being built.
+
+When building from source, to generate a shared library the configure script must specify the parameter: --enable-shared
+
+This causes the build process for the component to create shared library file(s), which can be linked to by FFmpeg; conventionally such files have an extension of .so.
+
+Rather than using the configure script paramater --prefix to specify a destination folder for the result of the component build, we must remove this to cause each component we build to be output to the default directory of /usr/local.
+
+This prevents difficulties later with ffmpeg, and other software, being unable to locate the library files; whilst this issue can be overcome by setting search paths, this requires additional effort and introduces the risk of incorrect configuration.
+
+Thus, rather than a configure command appearing like this…
+./configure --prefix="$HOME/ffmpeg_build" --enable-shared
+
+…it should appear like this:
+./configure --enable-shared
+
+Compiling From Source: The Make Command
+The make command triggers the compilation of source code into executable files or libraries by executing a makefile script which has been built by the configure script.
+
+On a multicore Raspberry Pi (model 2 and 3 Pis have four cores) the build process can be greatly accelerated by utilising more than a single core. The -j parameter specifies how many cores to use. For example, to use three cores:
+sudo make -j3
+
+Compiling from source with Make, utilising multiple cores
+Compiling from source with Make, utilising multiple cores
+Note: on a Raspberry Pi 3, running multiple cores at 100 % CPU greatly increases the temperature of the system, leading to ‘thermal regulation’ which reduces the clock speed of the CPU, defeating the gains of using multiple cores. When building software such as FFmpeg, which takes approximately 35 minutes on an overclocked Pi 3, I use:
+make -j2
+Using two cores balances the speed and temperature to allow the CPU to run at full overlcock speed (1350mhz on my system) whilst staying below 80 degrees Celsius (the default cut-off point at which thermal regulation forces the CPU to underclock; often the CPU reduces to 600mhz – half the 1.2ghz default speed)
+
+For more information regarding overclocking and underclocking, please see my previous post entitled Overclocking the Raspberry Pi 3: Thermal Limits and Optimising for Single vs Multicore Performance.
+
+A Note Before Proceeding
+I strongly advise that a full backup be made of the system, as there is no simple method to reverse the actions of the compilation and installation processes described below.
+
+A full image of the Raspberry Pi’s SD Card can be made using a tool such as Win32DiskImager.
+
+Installing Prerequisite Build Tools
+Commands to Obtain Information on APT Packages
+Is a package available in the APT cache, and if so, which version?
+apt-cache show packagename
+
+Where are the components of a package installed to?
+dpkg -L packagename
+
+Firstly, update the APT repository information to ensure the system can retrieve the latest version of components:
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+
+so i am in /home/pi as my current working directory
+Set up working directories to be used during the installation and build process: 
+
+ cd ~
+mkdir ~/ffmpeg_sources
+mkdir ~/ffmpeg_build
+
+Install various tools and packages, including audio-video codecs, required for building FFmpeg: 
+
+sudo apt-get -y install autoconf automake build-essential libass-dev libfreetype6-dev \
+  libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev \
+  libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev
+
+Installing the YASM Assembler
+Description from APT: Modular assembler with multiple syntax support
+
+Yasm is a complete rewrite of the NASM assembler. It supports multiple assembler syntaxes (eg, NASM, GAS, TASM, etc.) in addition to multiple output object formats (binary objects, COFF, Win32, ELF32, ELF64) and even multiple instruction sets (including AMD64). It also has an optimiser module.
+
+sudo apt-get install yasm
+
+Minimum version required: 1.2.0
+Version installed at time of writing: 1.2.0-2
+
+Compiling and Installing FFmpeg Codecs
+Configure’s –host Parameter
+The --host parameter allows the compiler to be tuned to output code for a specific processor. This code specifies a generic Arm processor and Linux operating system:
+--host=arm-unknown-linux-gnueabi
+The following is a more specific value, but I have only seen this referenced in cross-compiler guides, rather than those for local Raspberry Pi use.
+--host=arm-bcm2708hardfp-linux-gnueabi
+X264 Codec
+Description from APT: video encoder for the H.264/MPEG-4 AVC standard
+
+x264 is an advanced commandline encoder for creating H.264 (MPEG-4 AVC) video streams
+
+Configure’s –host Parameter
+The --host parameter allows the compiler to be tuned to output code for a specific processor. This code specifies a generic Arm processor and Linux operating system:
+--host=arm-unknown-linux-gnueabi
+The following is a more specific value, but I have only seen this referenced in cross-compiler guides, rather than those for local Raspberry Pi use.
+--host=arm-bcm2708hardfp-linux-gnueabi
+
+The x264 package is available in the APT repository, however it is not the latest version (which contains experimental support for Raspberry Pi x264 hardware encoding). To benefit from the latest features, I chose to build x264 from source.
+
+If you require libx264 for your FFmpeg build, the following parameter must be passed to the the FFmpeg configure script (see the FFmpeg build section, below):
+
+--enable-libx264
+
+To utilise the latest x264 library, obtain and build the source code, and install x264 by issuing the following commands at the console or a terminal window:
+
+
+ cd /home/pi/ffmpeg_sources
+git clone git://git.videolan.org/x264
+cd x264
+./configure --host=arm-unknown-linux-gnueabi --enable-shared --disable-opencl
+sudo make -j2
+sudo make install
+sudo make clean
+sudo make distclean
+
+Libfdk-aac Codec
+Description from Wikipedia:
+
+Fraunhofer FDK AAC is an open-source software library for encoding and decoding Advanced Audio Coding (AAC) format audio, developed by Fraunhofer IIS… It supports several Audio Object Types including MPEG-2 and MPEG-4 AAC LC, HE-AAC (AAC LC + SBR), HE-AACv2 (LC + SBR + PS) and AAC-LD (low delay) for real-time communication
+
+If you require libfdk-aac for your FFmpeg build, the following parameter must be passed to the the FFmpeg configure script (see the FFmpeg build section, below):
+
+--enable-libfdk-aac
+
+To obtain, compile, and install libfdk-aac, issue the following commands from the console or a terminal session:
+
+
+ cd ~/ffmpeg_sources
+wget -O fdk-aac.tar.gz https://github.com/mstorsjo/fdk-aac/tarball/master
+tar xzvf fdk-aac.tar.gz
+cd mstorsjo-fdk-aac*
+autoreconf -fiv
+./configure  --enable-shared
+sudo make -j2
+sudo make install
+sudo make clean
+sudo make distclean
+Libmp3lame Codec
+Description from APT: MP3 encoding library (development)
+
+Apt-Get Install: Target Directories
+The current working directory does not matter when installing via apt-get, as the target directories for the files within a package are determined by the package itself
+LAME (LAME Ain't an MP3 Encoder) is a research project for learning about and improving MP3 encoding technology. LAME includes an MP3 encoding library, a simple frontend application, and other tools for sound analysis, as well as convenience tools.
+
+MP3 audio encoder.
+
+If you require libmp3lame for your FFmpeg build, the following parameter must be passed to the the FFmpeg configure script (see the FFmpeg build section, below):
+
+--enable-libmp3lame
+
+To obtain, compile, and install libmp3lame, issue the following command from the console or a terminal session:
+
+sudo apt-get install libmp3lame-dev
+
+Version required: 3.98.3 or later
+Version installed: 3.99.5+repack1-7+deb8u1
+
+Libopus Codec
+Description from APT: Opus codec library development files
+
+The Opus codec is designed for interactive speech and audio transmission over the Internet. It is designed by the IETF Codec Working Group and incorporates technology from Skype's SILK codec and Xiph.Org'sT codec.
+
+Opus audio decoder and encoder.
+
+If you require libopus for your FFmpeg build, the following parameter must be passed to the the FFmpeg configure script (see the FFmpeg build section, below):
+
+--enable-libvorbis
+
+To obtain, compile, and install libopus, issue the following command from the console or a terminal session:
+
+sudo apt-get install libopus-dev
+
+Version required: 1.1 or later
+Version installed: 1.1-2
+
+Libvpx Codec
+libvpx Observations
+The wget command requests a specific version of libvpx (1.5.0) - at time of writing I am unsure if newer versions will work as well with FFmpeg
+
+configure reports:
+--enable-shared is only supported on ELF; assuming this is OK - it is.
+
+Description from APT: VP8 and VP9 video codec (development files)
+
+VP8 and VP9 are open video codecs, originally developed by On2 and released as open source by Google Inc. They are the successor of the VP3 codec, on which the Theora codec was based.
+
+If you require libvpx for your FFmpeg build, the following parameter must be passed to the the FFmpeg configure script (see the FFmpeg build section, below):
+
+--enable-libvpx
+
+To obtain, compile, and install libvpx, issue the following commands from the console or a terminal session:
+
+
+ cd ~/ffmpeg_sources
+wget http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.5.0.tar.bz2
+tar xjvf libvpx-1.5.0.tar.bz2
+cd libvpx-1.5.0
+PATH="$HOME/bin:$PATH" ./configure --enable-shared --disable-examples --disable-unit-tests
+PATH="$HOME/bin:$PATH" make -j2
+sudo make install
+sudo make clean
+sudo make distclean
+
+FFmpeg Suite
+The PATH Variable
+PATH="$HOME/bin:$PATH"
+Libmp3lame Codec
+Description from APT: MP3 encoding library (development)
+
+Apt-Get Install: Target Directories
+The current working directory does not matter when installing via apt-get, as the target directories for the files within a package are determined by the package itself
+LAME (LAME Ain't an MP3 Encoder) is a research project for learning about and improving MP3 encoding technology. LAME includes an MP3 encoding library, a simple frontend application, and other tools for sound analysis, as well as convenience tools.
+
+MP3 audio encoder.
+
+If you require libmp3lame for your FFmpeg build, the following parameter must be passed to the the FFmpeg configure script (see the FFmpeg build section, below):
+
+--enable-libmp3lame
+
+To obtain, compile, and install libmp3lame, issue the following command from the console or a terminal session:
+
+sudo apt-get install libmp3lame-dev
+
+Version required: 3.98.3 or later
+Version installed: 3.99.5+repack1-7+deb8u1
+
+Libopus Codec
+Description from APT: Opus codec library development files
+
+The Opus codec is designed for interactive speech and audio transmission over the Internet. It is designed by the IETF Codec Working Group and incorporates technology from Skype's SILK codec and Xiph.Org'sT codec.
+
+Opus audio decoder and encoder.
+
+If you require libopus for your FFmpeg build, the following parameter must be passed to the the FFmpeg configure script (see the FFmpeg build section, below):
+
+--enable-libvorbis
+
+To obtain, compile, and install libopus, issue the following command from the console or a terminal session:
+
+sudo apt-get install libopus-dev
+
+Version required: 1.1 or later
+Version installed: 1.1-2
+
+Libvpx Codec
+libvpx Observations
+The wget command requests a specific version of libvpx (1.5.0) - at time of writing I am unsure if newer versions will work as well with FFmpeg
+
+configure reports:
+--enable-shared is only supported on ELF; assuming this is OK - it is.
+
+Description from APT: VP8 and VP9 video codec (development files)
+
+VP8 and VP9 are open video codecs, originally developed by On2 and released as open source by Google Inc. They are the successor of the VP3 codec, on which the Theora codec was based.
+
+If you require libvpx for your FFmpeg build, the following parameter must be passed to the the FFmpeg configure script (see the FFmpeg build section, below):
+
+--enable-libvpx
+
+To obtain, compile, and install libvpx, issue the following commands from the console or a terminal session:
+
+
+ cd ~/ffmpeg_sources
+wget http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.5.0.tar.bz2
+tar xjvf libvpx-1.5.0.tar.bz2
+cd libvpx-1.5.0
+PATH="$HOME/bin:$PATH" ./configure --enable-shared --disable-examples --disable-unit-tests
+PATH="$HOME/bin:$PATH" make -j2
+sudo make install
+sudo make clean
+sudo make distclean
+
+FFmpeg Suite
+The PATH Variable
+PATH="$HOME/bin:$PATH"
+
+PATH is a system variable which can be modified to allow the system to locate required shared libraries, executable files, etc, during the compilation process in arbitrary locations.
+
+/home/pi/bin did not exist on my machine at the time the above code block was run. All of the files required to build FFmpeg have been installed in directories within the default /usr/ path
+
+The following code builds FFmpeg from scratch, using the latest source version, and utilising shared libraries for codec components.
+
+The current versions of required codecs and components are used in most instances in a bid to rule out incompatibilities due to mix-and-match versions of components.
+
+Note: the directory /home/pi/bin is not required to exist before running the FFmpeg compilation routine.
+
+As noted in each codec-specific section, above, if a specific codec is required in your build of FFmpeg, the appropriate parameter must be passed to FFmpeg's configure script.
+
+Once completed, FFmpeg installs four executable files within the /usr/local/bin directory:
+
+ffmpeg
+a very fast video and audio converter that can also grab from a live audio/video source. It can also convert between arbitrary sample rates and resize video on the fly with a high quality polyphase filter.
+
+ffprobe
+gathers information from multimedia streams and prints it in human- and machine-readable fashion. For example it can be used to check the format of the container used by a multimedia stream and the format and type of each media stream contained in it.
+
+ffserver
+a streaming server for both audio and video. It supports several live feeds, streaming from files and time shifting on live feeds. You can seek to positions in the past on each live feed, provided you specify a big enough feed storage.
+
+ffplay
+a very simple and portable media player using the FFmpeg libraries and the SDL library. It is mostly used as a testbed for the various FFmpeg APIs.
+
+All descriptions are from the FFmpeg project's official documentation.
+
+Compiling and Installing FFmpeg
+Note: during the compilation process, expect to see a number of warning messages emitted by the compiler - these are normal, and do not indicate failure.
+
+FFmpeg Warning Messages During make Process
+FFmpeg Warning Messages During make Process
+To compile and build FFmpeg, issue the following commands at the console, or in a terminal emulator:
+
+
+ cd ~/ffmpeg_sources
+wget http://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
+tar xjvf ffmpeg-snapshot.tar.bz2
+cd ffmpeg
+
+PATH="$HOME/bin:$PATH" ./configure \
+  --pkg-config-flags="--static" \
+  --extra-cflags="-fPIC -I$HOME/ffmpeg_build/include" \
+  --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
+  --enable-gpl \
+  --enable-libass \
+  --enable-libfdk-aac \
+  --enable-libfreetype \
+  --enable-libmp3lame \
+  --enable-libopus \
+  --enable-libtheora \
+  --enable-libvorbis \
+  --enable-libvpx \
+  --enable-libx264 \
+  --enable-nonfree \
+  --enable-pic \
+  --extra-ldexeflags=-pie \
+  --enable-shared
+
+Build Time
+On a Raspberry Pi 3, overclocked to 1350mhz, the make command for FFmpeg took approximately 35 minutes.
+
+ PATH="$HOME/bin:$PATH" make -j2
+sudo make install
+sudo make distclean
+hash -r
+
+The final, critical step, is to update the links between FFmpeg and the shared codec libraries, by using ldconfig to configure the dynamic linker run-time bindings:
+
+sudo ldconfig
+
+Checking the FFmpeg Build
+When the ffmpeg command is issued at a terminal a successful build should output information similar to that shown in the following screen:
+
+FFmpeg Command Build Information
+FFmpeg Command Build Information
+If the aforementioned step is omitted, when issuing the ffmpeg command an error similar to the following may be experienced:
+
+ffmpeg: error while loading shared libraries: libavdevice.so.57: cannot open shared object file: No such file or directory
+
+On some builds the ffmpeg command may run correctly, but the error may be triggered when a parameter is passed, for example to query the codecs available within the ffmpeg installation:
+
+ffmpeg -codecs
+
+The same solution applies, namely rebuilding the library cache using the ldconfig command.
+
+Building a Specific Version of FFmpeg
+The above code retrieves the source for the latest FFmpeg release, contained within an archive named ffmpeg-snapshot.tar.bz2.
+Should you require a specific version, the ffmpeg.org site maintains an archive of the source code for each release. To retrieve the 2.8.4 version, for example, update the code as follows:
+wget http://ffmpeg.org/releases/ffmpeg-2.8.4.tar.bz2
+tar xjvf ffmpeg-2.8.4.tar.bz2
+# rename version specific ffmpeg folder
+mv ffmpeg-2.8.4 ffmpeg
+Details for each major FFmpeg release can be found here:
+http://ffmpeg.org/download.html#releases
+All-in-One FFmpeg Build and Installation Script
+A complete all-in-one script of the above code is available here, along with instructions for creating and executing the script file.
+
+Using FFmpeg to Transcode Files: Examples
+The FFmpeg suite facilitates the modification and transcoding (conversion between formats) of audio and/or video files with almost unlimited flexibility, and as such is a huge topic in its own right. The following are some examples to introduce the basic concepts and functionality.
+
+Note: The order of the parameters is significant
+
+Set input and output file names:
+The extension of the output file is used to automatically set the format, however this can be explicitly specified:
+Parameter: -i
+(if the output file is specified as the last item, it does not require a specific parameter)
+ffmpeg -i input.mkv output.mp4
+
+Set video and audio format of output file:
+Parameters: -c:v, -c:a
+ffmpeg -i input.mkv -c:v libx264 -c:a aac output.mp4
+
+Set a specific format for x264 video - planar 4:2:0 (for Twitter and Omxplayer compatibility):
+Parameter: -pix_fmt
+ffmpeg -i input.mkv -c:v libx264 -pix_fmt yuv420p -c:a aac output.mp4
+
+Set the quality of the video using near-lossless compression:
+Parameter: -qp
+ffmpeg -i input.mkv-c:v libx264 -qp 1 -c:a aac output.mp4
+
+alternatively, use Constant Rate Factor:
+Parameter: -crf
+ffmpeg -i input.mkv-c:v libx264 -crf 1 -c:a aac output.mp4
+
+Note: both qp and crf specify a value of 0 for lossless, however this causes corrupt video when played back using the Raspberry Pi's default Omxplayer; the video is however fine when viewed using other software, for example VLC.
+
+Set number of threads to utilise when processing:
+Parameter: -threads
+ffmpeg -i input.mkv -threads 2 -c:v libx264 -c:a aac output.mp4
+
+Set framerate of output file:
+Parameter: -r
+ffmpeg -i input.mkv -c:v libx264 -r 30 -c:a aac output.mp4
+
+Set a start position and a duration, both in seconds, to process a portion of the input file:
+Parameters: -ss, -t
+ffmpeg -ss 11 -t 42 -i input.mkv -threads 2 -c:v libx264 -qp 1 -r 30 -pix_fmt yuv420p -vf scale=-1:ih*2 -c:a aac output.mp4
+
+Set a combination of parameters to output a file suitable for uploading to Twitter:
+(4:2:0 Planar x264 video, at 30 fps, with near-lossless compression, scaled to twice the input file resolution, with aac encoded audio)
+
+ffmpeg -i input.mkv -threads 2 -c:v libx264 -qp 1 -r 30 -pix_fmt yuv420p -vf scale=-1:ih*2 -c:a aac output.mp4
+
+A Labour of Love
+Retro Resolution is entirely a labour of love. Please consider offering a donation if the information here has helped illuminate, enlighten, or otherwise assisted you!
+Donate Using PayPal
+
+Related Posts
+===============================================
+#!/usr/bin/python
+'''
+  A Simple mjpg stream http server for the Raspberry Pi Camera
+  inspired by https://gist.github.com/n3wtron/4624820
+'''
+from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
+import io
+import time
+import picamera
+
+camera=None
+ 
+
+class CamHandler(BaseHTTPRequestHandler):
+  def do_GET(self):
+    if self.path.endswith('.mjpg'):
+      self.send_response(200)
+      self.send_header('Content-type','multipart/x-mixed-replace; boundary=--jpgboundary')
+      self.end_headers()
+      stream=io.BytesIO()
+      try:
+        start=time.time()
+        for foo in camera.capture_continuous(stream,'jpeg'):
+          self.wfile.write("--jpgboundary")
+          self.send_header('Content-type','image/jpeg')
+          self.send_header('Content-length',len(stream.getvalue()))
+          self.end_headers()
+          self.wfile.write(stream.getvalue())
+          stream.seek(0)
+          stream.truncate()
+          time.sleep(.5)
+      except KeyboardInterrupt:
+        pass 
+      return
+    else:
+      self.send_response(200)
+      self.send_header('Content-type','text/html')
+      self.end_headers()
+      self.wfile.write("""<html><head></head><body>
+        <img src="/cam.mjpg"/>
+      </body></html>""")
+      return
+
+def main():
+  global camera
+  camera = picamera.PiCamera()
+  #camera.resolution = (1280, 960)
+  camera.resolution = (640, 480)
+  global img
+  try:
+    server = HTTPServer(('',8080),CamHandler)
+    print "server started"
+    server.serve_forever()
+  except KeyboardInterrupt:
+    camera.close()
+    server.socket.close()
+
+if __name__ == '__main__':
+  main()
+================================================
+October 1 2013
+How to build and run MJPG-Streamer on the Raspberry Pi
+Posted by Miguel Grinberg under Raspberry Pi, Programming, Video.
+
+
+
+inShare
+It's been a while since I wrote the article on streaming video from the Raspberry Pi using MJPG-Streamer. Since I published that article I have received several comments and questions regarding issues building MJPG-Streamer, so in this short post I'm giving you revised build instructions.
+
+1. Install build dependencies
+The following command installs the three libraries that MJPG-Streamer uses:
+
+$ sudo apt-get install libjpeg8-dev imagemagick libv4l-dev
+2. Add missing videodev.h
+The videodev.h header file that MJPG-Streamer needs has been replaced with a videodev2.h. To make MJPG-Streamer happy you have to create a symbolic link:
+
+$ sudo ln -s /usr/include/linux/videodev2.h /usr/include/linux/videodev.h
+3. Download MJPG-Streamer
+The source code for MJPG-Streamer is available at sourceforge.net, but it is tricky to find the direct download link:
+
+$ wget http://sourceforge.net/code-snapshots/svn/m/mj/mjpg-streamer/code/mjpg-streamer-code-182.zip
+Note that sometimes the link above fails to work. If that is the case, you can also download from your web browser by opening this page: http://sourceforge.net/p/mjpg-streamer/code/HEAD/tarball.
+
+4. Unzip the MJPG-Streamer source code
+The source code download is a compressed zip file. Put the file in your home directory (or a temporary folder, if you prefer) and run the following to extract the files:
+
+$ unzip mjpg-streamer-code-182.zip
+5. Build MJPG-Streamer
+MJPG-Streamer comes with several plugins, but only a couple of them are needed to stream video according to the method I explained in my previous article. The command below only builds what's needed:
+
+$ cd mjpg-streamer-code-182/mjpg-streamer
+$ make mjpg_streamer input_file.so output_http.so
+6. Install MJPG-Streamer
+I did not discuss installation in the previous article, and that confused many readers. The following commands copy all the needed files into system directories:
+
+$ sudo cp mjpg_streamer /usr/local/bin
+$ sudo cp output_http.so input_file.so /usr/local/lib/
+$ sudo cp -R www /usr/local/www
+7. Start the camera
+We are almost there. Now it is time to start the camera module:
+
+$ mkdir /tmp/stream
+$ raspistill --nopreview -w 640 -h 480 -q 5 -o /tmp/stream/pic.jpg -tl 100 -t 9999999 -th 0:0:0 &
+Of course, you can use different options to raspistill if you like.
+
+8. Start MJPG-Streamer
+The camera is now writing images, so all that is left is to start MJPG-Streamer:
+
+LD_LIBRARY_PATH=/usr/local/lib mjpg_streamer -i "input_file.so -f /tmp/stream -n pic.jpg" -o "output_http.so -w /usr/local/www"
+9. Watch the Stream!
+Now you can connect with your web browser and watch the stream live. If you want to watch from within the same Raspberry Pi you can enter http://localhost:8080 in the browser's address bar. If you want to watch from another computer in your network use http://<IP-address>:8080.
+
+10. Cleanup
+After you verify that everything is working you can remove the source code:
+
+$ cd ../../
+$ rm -rf mjpg-streamer-182
+Conclusion
+I hope these instructions clarify all the aspects of setting up the streaming server on the Pi. If you still have questions let me know below!
+================================================
+Turn your Raspberry Pi 3 into a PHP 7 powered web server
+BY STE · 22ND MARCH 2016
+Important: This tutorial needs updating. As the comments show, lots of people having the same issue. I will update the tutorial this week.
+In this tutorial I’m going to go through the steps to install Apache2 and PHP 7.0 on your Raspberry Pi 3, to create the ultimate low-powered, super quick web server.
+
+Prerequisites
+I’m going to assume that you have Raspbian installed on your Raspberry Pi 3. For the best results, I recommend running Raspbian from a USB Flash drive rather than a MicroSD card. See my tutorial on how to do this.
+
+
+Update
+These instructions should work fine on the Raspberry Pi 2 as well. Let me know if anyone tries this.
+
+Step 1 – Add new repository sources
+At the time of writing, PHP 7.0 hasn’t yet made the official repository sources, so we need to add one which provides us with the PHP 7.0 packages. Edit your sources file with this command:
+
+sudo nano /etc/apt/sources.list
+Below the existing entries in the file on a blank line, add the following two lines:
+
+deb http://repozytorium.mati75.eu/raspbian jessie-backports main contrib non-free
+#deb-src http://repozytorium.mati75.eu/raspbian jessie-backports main contrib non-free
+Your file should look a little like this:
+
+Install Apache 2 and PHP 7 on Raspberry Pi 3
+
+Next we need to add a couple of certificates in order to allow us to use the sources with apt-get. Run the following two commands:
+
+sudo gpg --keyserver pgpkeys.mit.edu --recv-key CCD91D6111A06851
+sudo gpg --armor --export CCD91D6111A06851 | sudo apt-key add -
+And finally we need to update the package list by running:
+
+sudo apt-get update
+Step 2 – Install the core Apache2 and PHP 7 packages
+We’re ready to install Apache2 and PHP7, along with some common packages that we may need for most web applications such as Symfony2, WordPress, Drupal etc. Run the following command to install these packages:
+
+apt-get install apache2 php7.0 php7.0-curl php7.0-gd php7.0-imap php7.0-json php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-xmlrpc libapache2-mod-php7.0
+This may take a little time, but as soon as we’re done, we are essentially finished.
+
+Step 3 – Test Apache2 and PHP 7
+Assuming all went well, we’re ready to test to see if everything went OK with the installation. First we’ll test the version of PHP that CLI is using:
+
+php -v
+You should see something like this:
+
+Install PHP 7 on Raspbian
+
+Next we’ll test two things; Apache2 and PHP 7. In your web browser, visit the IP address of your Raspberry Pi. If you haven’t used ssh and have followed these steps on your Raspberry Pi 3 itself, just visit http://127.0.0.1, otherwise change 127.0.0.1 for the IP address of your Raspberry Pi.
+
+You should see the default Debian holding page:
+
+Turn Raspberry Pi into a web server
+
+Next we’ll test PHP. Run the following command to create a test file:
+
+echo "<?php phpinfo();" >> /var/www/html/phpinfo.php
+Yet again, visit the IP address of your Raspberry Pi, this time adding /phpinfo.php to the URL. You should see the PHP Information as shown below:
+
+Install PHP 7 on Raspberry Pi
+
+Conclusion
+
+The Raspberry Pi 3 is a very capable, low power consuming little piece of kit. Combine that with the awesome power and speed of PHP 7.0 and you have a low energy web server that’s lightning quick and ideal for blogging from. As mentioned in the prerequisites, I do recommend using a decent USB Flash drive instead of an MicroSD card to run the operating system.
+
+My first experiments with WordPress on PHP 7 on a Raspberry Pi 3 were very promising. I’m probably going to switch back to hosting this site from one again, now that the equipment and software can keep up with the traffic to the site.
+
+================================================================================================
+Install and run PHP 7 on Raspbian (Raspberry Pi Debian)
+PHP 7 was made available on December 3rd 2015. It offers great improvements in performance and memory use, which are even more significant in resource limited environments like the Raspberry Pi. Together with MySQL 5.7 and the lightweight H2O web server it offers significant gains to performance in LAMP applications.
+
+Debian 8 (Jessie) is locked to PHP 5.6 and will not come with an upgrade to PHP 7. Soon after launch time there is the excellent Dotdeb.org available to users of Debian.
+
+Dotdeb is a great resource and easy to install, but for Raspberry Pi you'll need to look elsewhere. The reason is the ARM CPU; In 2015 most servers still use the x86 and x86-64 architectures (Intel and AMD processors mostly) and ARM does not have the domination here as it does in the mobile space.
+
+Installing from APT
+For one option for prebuilt APT packages for Raspbian you can look at Mati75's private Debian repository, which seems quite up-to-date, and have plenty of packages such as bz2, cgi, cli, curl, dbg, dev, fpm, gd, imap, interbase, intl, json, ldap, mcrypt, mysql, odbc, opcache, pgsql, phpdbg, pspell, readline, recode, snmp, sqlite3, sybase, tidy, xmlrpc and others.
+
+To install PHP 7 from Mati75's repository (for Debian Jessie):
+
+1. Add the following lines to your sources file (/etc/apt/sources.list):
+
+deb http://repozytorium.mati75.eu/raspbian jessie-backports main contrib non-free
+#deb-src http://repozytorium.mati75.eu/raspbian jessie-backports main contrib non-free
+2. Add repository public key
+
+gpg --keyserver pgpkeys.mit.edu --recv-key CCD91D6111A06851
+     gpg --armor --export CCD91D6111A06851 | apt-key add -
+3. Run APT update
+
+apt-get update
+4. Install PHP 7
+
+apt-get install php7.0 php7.0-opcache
+In addition you'll likely need other extensions for db access and more, they are prefixed as php7.0-xx. For installing a web server like Nginx you can follow tutorials such as Bolting on PHP with PHP-FPM. Obviously php5 packages will be php7.0 packages instead, but otherwise Debian and Ubuntu tutorials work fine with Raspbian.
+
+Installing from source
+If no the repo does not work for you, then you can look into building PHP 7 from source yourself. For initial insight on how to build PHP 7 on Raspbian read about Installing PHP 7 on Debian 8 Jessie. These configure options seem to work fine:
+
+'./configure' '--prefix=/opt/php7' '--enable-fpm' '--with-libxml-dir=/usr/lib/x86_64-linux-gnu/' '--enable-bcmath' '--enable-exif' '--enable-intl' '--enable-calendar' '--enable-zip' '--enable-soap' '--enable-ftp' '--enable-pcntl' '--enable-mbstring' '--with-openssl' '--with-curl' '--with-pdo-mysql=mysqlnd' '--with-mcrypt' '--with-zlib' '--with-bz2' '--with-config-file-path=/opt/php7/etc/' '--with-config-file-scan-dir=/opt/php7/etc/modules/'
+
+Read more about PHP 7:
+
+Symfony Benchmarks: PHP 5.6, HHVM 3.11 and PHP 7.0.1
+Speeding up the web with PHP 7
+Performance insight into the upcoming release of PHP 7
+Migrating from PHP 5.6.x to PHP 7.0.x
+PHP Data Structures and the impact of PHP 7 on them
+PHP-FPM vs. PHP-PM (on PHP 7 and HHVM)
+================================================
+Using MySQL on a Raspberry Pi
+SQLite is a great database for many situations, but there are times when it's not quite up to the job. SQLite can be used in web sites, but it's much more common to use MySQL. This is because
+
+MySQL is more scalable,
+MySQL can be tuned more easily,
+it supports user management and permissions,
+MySQL is better for sites with heavy traffic,
+it can be used in client server architectures where a database client must access a database remotely.
+Setting up MySQL on a Raspberry Pi
+Before we get started, we need to install MySQL server and the Python bindings for MySQL:
+
+
+sudo apt-get install mysql-server python-mysqldb
+
+During the installation of MySQL server, you will be prompted to enter a password for the MySQL root account.
+
+I'm going to create a database to log temperatures as I did with the SQLite posts. As before, I'm going to create a database named temps to store records with fields for a date, time, zone and temperature.
+
+Like SQLite, MySQL comes with a shell that can be used for configuration. We can use the the MySQL shell to create a database:
+
+
+$ mysql -u root -p
+Enter password:
+mysql> CREATE DATABASE temps
+mysql> USE temps
+
+The 'USE temps' command tells the shell to use that database in future operations in this shell session. MySQL supports users accounts, so we need to create a database user and give it access to the database:
+
+
+mysql> CREATE USER 'monitor'@'localhost' IDENTIFIED BY 'password';
+mysql> GRANT ALL PRIVILEGES ON temps.* TO 'monitor'@'localhost'
+mysql> FLUSH PRIVILEGES;
+mysql> quit
+
+This creates a user called monitor (because the database is going to be accessed by a program that monitors temperatures), and assigns it a pass word 'password'. This user is allowed to connect to the database from 'localhost'.
+
+Initially, the new user has no privileges, so it must be granted some access rights using the 'GRANT' command. I have used 'ALL' in this example, but in real world applications it would be better to grant users more limited rights. A complete list of privilege options is available at http://dev.mysql.com/doc/refman/5.1/en/grant.html.
+
+The last command quits the shell so that we can re-enter the shell as the user that we just created:
+
+
+mysql -u monitor -p
+
+Now I'm going to create a table with the fields needed for storing data:
+
+
+CREATE TABLE tempdat (tdate DATE, ttime TIME, zone TEXT, temperature NUMERIC);
+
+Accessing a MySQL database with Python
+I'm going to use Python to populate the database. As in the previous examples, I'm going to create sample data from one day ago, 12 hours ago and now, and I'm going to record temperatures in three different zones.
+
+This Python code is the start of my script:
+
+
+#!/usr/bin/env python
+
+import MySQLdb
+
+
+db = MySQLdb.connect("localhost", "monitor", "password", "temps")
+curs=db.cursor()
+
+I imported the MySQLdb python module and connected to it with the user name and password that I set up in the shell. The following code then inserts records into the database:
+
+
+# note that I'm using triplle quotes for formatting purposes
+# you can use one set of double quotes if you put the whole string on one line
+try:
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE() - INTERVAL 1 DAY, NOW(), 'kitchen', 21.7)""")
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE() - INTERVAL 1 DAY, NOW(), 'greenhouse', 24.5)""")
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE() - INTERVAL 1 DAY, NOW(), 'garage', 18.1)""")
+
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE(), NOW() - INTERVAL 12 HOUR, 'kitchen', 20.6)""")
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE(), NOW() - INTERVAL 12 HOUR, 'greenhouse', 17.1)""")
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE(), NOW() - INTERVAL 12 HOUR, 'garage', 16.2)""")
+
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE(), NOW(), 'kitchen', 22.9)""")
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE(), NOW(), 'greenhouse', 25.7)""")
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE(), NOW(), 'garage', 18.2)""")
+
+    db.commit()
+    print "Data committed"
+
+except:
+    print "Error: the database is being rolled back"
+    db.rollback()
+
+If there's an error during any of these SQL commands, or if there's an error while committing the changes, the changes will be rolled back. This can be simplified using a Python context manager:
+
+
+with db:
+    curs.execute ("""INSERT INTO tempdat
+            values(CURRENT_DATE() - INTERVAL 1 DAY, NOW(), 'kitchen', 21.7)""")
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE() - INTERVAL 1 DAY, NOW(), 'greenhouse', 24.5)""")
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE() - INTERVAL 1 DAY, NOW(), 'garage', 18.1)""")
+
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE(), NOW() - INTERVAL 12 HOUR, 'kitchen', 20.6)""")
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE(), NOW() - INTERVAL 12 HOUR, 'greenhouse', 17.1)""")
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE(), NOW() - INTERVAL 12 HOUR, 'garage', 16.2)""")
+
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE(), NOW(), 'kitchen', 22.9)""")
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE(), NOW(), 'greenhouse', 25.7)""")
+    curs.execute ("""INSERT INTO tempdat 
+            values(CURRENT_DATE(), NOW(), 'garage', 18.2)""")
+
+This will automatically handle commit and rollback operations.
+
+Getting data from the database
+Once data has been inserted into the database, we need to be able to retrieve it. We can do this using the SQL select command. The execute function runs the SQL query, and the fetchall function returns a list of records that matched the query:
+
+
+curs.execute ("SELECT * FROM tempdat")
+
+print "\nDate     	Time		Zone		Temperature"
+print "==========================================================="
+
+for reading in curs.fetchall():
+    print str(reading[0])+"	"+str(reading[1])+" 	"+\
+                reading[2]+"  	"+str(reading[3])
+
+The for loop iterates through the list of results. Each record is a list of values. Note that the time and the temperature values have to be converted to a string before they can be appended to the result string. This code prints the contents of the entire database as a table:
+
+
+Date     	Time		Zone		Temperature
+===========================================================
+2013-09-09	14:41:46 	kitchen  	21.7
+2013-09-09	14:41:46 	greenhouse  	24.5
+2013-09-09	14:41:46 	garage  	18.1
+2013-09-10	2:41:46 	kitchen  	20.6
+2013-09-10	2:41:46 	greenhouse  	17.1
+2013-09-10	2:41:46 	garage  	16.2
+2013-09-10	14:41:46 	kitchen  	22.9
+2013-09-10	14:41:46 	greenhouse  	25.7
+2013-09-10	14:41:46 	garage  	18.2
+
+We can use the WHERE keyword to attach conditions to a query. In this example, I'm going to search for records where the temperature is above 20.0 degrees:
+
+
+curs.execute ("SELECT * FROM tempdat WHERE temp>%s", (str(20.0),))
+
+Note that it's important not to use string substitution to insert parameters into the query as this makes it easier for people to inject malicious SQL code into a query. This query does the same thing, but it's less secure:
+
+
+curs.execute ("SELECT * FROM tempdat WHERE temp>%s" % str(20.0))
+
+In this example, the variable is unconditionally inserted into the query. In the previous one, the query and the parameter are passed to the MySQL library, which checks to see if the parameter is safe before inserting it.
+
+The output from this query is
+
+
+Date     	Time		Zone		Temperature
+===========================================================
+2013-09-09	14:41:46 	kitchen  	21.7
+2013-09-09	14:41:46 	greenhouse  	24.5
+2013-09-10	2:41:46 	kitchen  	20.6
+2013-09-10	14:41:46 	kitchen  	22.9
+2013-09-10	14:41:46 	greenhouse  	25.7
+
+At the end of the script, we close the connection to the database:
+
+
+db.close()
+
+See also: http://dev.mysql.com/doc/refman/5.5/en/sql-syntax.html.
+
+=============================================
+Raspberry Pi Dev Setup with Nginx + PHP7
+How to develop Grav sites with a $35 computer
+ Andy Miller posted on 04/04/2016 in tutorial + raspberrypi + nginx + php7  12 mins
+Last year I setup a Raspberry Pi 2 Model B as a development web server. I took note of the steps involved and over the ensuing months, I've provided those notes to individuals on our Gitter chat looking to do the same thing. I recently purchased the latest Raspberry Pi 3 Model B which has the same form-factor, but has a faster 1.2Ghz quad core processor, built-in WIFI, and Bluetooth 4.1. I thought I would take this opportunity to update my notes, and turn them into a full blown tutorial as this seems to be a popular subject.
+
+
+
+In this tutorial, we cover the basics to get Raspbian OS running on your Raspberry Pi computer. We will install the high-performance nginx 1.9 webserver, along with PHP 7.0 for optimal performance. We'll also cover installing the latest Netatalk 3 with spotlight support for easy file sharing with your Mac. So read on dear listener if you would like to discover the joy of building your own full linux-powered server on a $35 computer!
+
+Initial Raspbian Installation
+Raspbian is the best option for operating systems on the Raspberry Pi because it's the most supported and is based on Debian, a very popular Linux distribution. Those of you that have used Debian or Ubuntu will be very much at home with Raspbian. The current version called Jessie is equivalent to the latest Debian 8 release.
+
+Rather than rehashing all the information available, I suggest you follow the installation procedures outlined on the Raspberry Pi site and install NOOBS onto an SD card. After you have created your bootable NOOBS installer, you can insert it in your Raspberry Pi and power it on. It will boot very quickly and then you can simply pick Raspbian from the installer and let it do it's thing.
+
+When the installation is complete, you should be greeted by a clean desktop environment. Time to get some things setup and configured!
+
+Raspbian Updates
+Throughout this tutorial, I'm going to assume you are using a terminal so if you have not already done so, start up a terminal by clicking the terminal icon from the top menu bar of the desktop and it will launch a terminal instance for you.
+
+Even though you just installed Raspbian, there are often updates to packages available so the first thing to do is make sure you are running the latest versions. Follow these steps:
+
+$ sudo apt-get update
+$ sudo apt-get dist-upgrade
+$ sudo apt-get upgrade
+You probably won't have any extra updates to perform after the dist-upgrade step, but better safe than sorry!
+
+Raspbian Configuration
+We can use the RASPI Config command to setup some important configuration options for our new Pi.
+
+$ sudo raspi-config
+Read the official docs for full details, but I like to set the following:
+
+Change Password - pick a new unique password (default is raspberry)
+Boot Option - I like to select console as I don't use the desktop at all
+Internationalisation Options - Change Locale to suite (I use en_US.UTF-8), Change Timezone to UTC (why?)
+Choose your Editor
+By default Raspbian comes with the GNU Nano Editor. It's a very capable editor and is great for newbies because it has on-screen help for commands. However, I've been a Vi kind of guy for many years, and just feel more comfortable using that. Vi has been around for years, and Vim is a new and improved version that is easily installable on Raspbian:
+
+$ sudo apt-get install vim
+Throughtout this guide I commonly will have vi commands for editing files. You can simply replace this with nano if you wish to use the default editor.
+
+Changing the default Hostname
+By default, Raspbian installs with the hostname raspberry. If you wish to change this to something more memorable, you just need to edit this value and then restart the hostname service:
+
+$ sudo vi /etc/hosts
+$ sudo vi /etc/hostname
+$ sudo /etc/init.d/hostname.sh
+Accessing Remotely
+It's all well and good to use your new Raspberry Pi machine via the keyboard and monitor you have plugged into it, but it's much easier to simply access it remotely from your regular desktop. To do this your best friend is SSH (Secure Shell). In order to reach your Raspberry Pi, you will need to know the IP address. To do so simply type:
+
+$ hostname -I
+This will report the current IP address of the machine.
+
+On your regular computer, you can simply create a /etc/hosts entry with this IP and a suitable name. Usually this should match the hostname you just set. Then you can access your Pi remotely via:
+
+$ ssh pi@raspberry
+Enter the password you set in the configuration step, or if you have not set the password yet, it will be raspberry. More details can be found in the docs.
+
+It is strongly advised to use SSH Keys rather than passwords. There is a great tutorial on how to set up Passwordless SSH Access in the offical docs.
+
+Updating Firmware (Optional)
+Your Raspbian installation also included a pretty recent copy of the Raspberry Pi firmware. However, sometimes there are important updates, so it really doesn't hurt to update this to the latest version:
+
+$ sudo rpi-update
+$ sudo reboot
+Change the Shell (Optional)
+By default, Raspbian ships with the very capable bash shell. However, I personally prefer zsh which has many useful features. On top of this I like to use Oh My ZSH! which is a handy ZSH configuration tool that comes packed with custom plugins, themes, etc.
+
+
+
+To install this just follow these steps:
+
+$ sudo apt-get install zsh
+$ wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+$ chsh -s `which zsh`
+Then simply log out and back in to see your new shell in all it's glory! I like to change the theme to nice clean multi-line version. To do so simply edit the ~/.zshrc file and change the theme to one of the many supported themes (I personally like candy).
+
+Install PHP 7.0
+Raspbian being based on Debian Jessie ships with PHP 5.6 by default. This works fine, but there is a better option and that is PHP 7.0. Released in December of 2015, PHP 7.0 is a radical jump forwards for PHP in terms of performance, language features and reduction in memory usage.
+
+As with most PHP-centric projects, Grav commonly sees 2X performance increases when running under PHP 7.0 and that combined with the reduction in memory, makes it an ideal candidate for the Raspberry Pi.
+
+To install this newer PHP version however, we must tap into the testing branch of Raspbian, commonly known by the codename stretch. We must edit the sources.list file used by Aptitude (apt-get):
+
+$ sudo vi /etc/apt/sources.list
+Add this line under the first jessie line:
+
+deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi
+Now, by adding this all installs or updates will default to use the newer versions of files available in the stretch release which is not considered 100% stable. The way around this is to pin all packages to use the jessie release with a higher priority by default. To do this create a preferences file:
+
+$ sudo vi /etc/apt/preferences
+And paste in the follwing:
+
+Package: *
+Pin: release n=jessie
+Pin-Priority: 600
+Save this file and update:
+
+$ sudo apt-get update
+You can see which release versions are available with which priority by using sudo apt-cache policy. You can also see specific versions of packages with sudo apt-cache policy <package_name>
+
+Now you are ready to install PHP 7.0 from the stretch release including all the common PHP packages:
+
+$ sudo apt-get install -t stretch php7.0 php7.0-curl php7.0-gd php7.0-fpm php7.0-cli php7.0-opcache php7.0-mbstring php7.0-xml php7.0-zip
+Notice the use of -t stretch to specify the release? This is not strictly necessary as php7.0 packages do not exist in the jessie release, but again, better to be specific here.
+
+After this has been completed, you can quickly test to make sure things have been installed by simply typing:
+
+$ php -v
+PHP 7.0.4-7 (cli) ( NTS )
+Copyright (c) 1997-2016 The PHP Group
+Zend Engine v3.0.0, Copyright (c) 1998-2016 Zend Technologies
+    with Zend OPcache v7.0.6-dev, Copyright (c) 1999-2016, by Zend Technologies
+Installation of nginx 1.9
+While it's trivial to install nginx 1.6 with Raspbian, we want to use a faster, more up to date, and secure version of nginx here, and luckily there's a nginx 1.9 version available in the stretch release.
+
+$ sudo apt-get install -t stretch nginx
+You can easily see what version would install by simulating an install: sudo apt-get install -t stretch -s
+
+Once installed, we want to modify our PHP 7.0 FPM pool to use our pi user and group, so edit the config file:
+
+$ sudo vi /etc/php/7.0/fpm/pool.d/www.conf
+And and change the user and group references:
+
+user = pi
+group = pi
+Next we want to create a new nginx configuration for our grav test site:
+
+$ sudo vi /etc/nginx/sites-available/grav
+In this file paste:
+
+server {
+    #listen 80;
+    index index.html index.php;
+
+    ## Begin - Server Info
+    root /home/pi/www/grav;
+    server_name localhost;
+    ## End - Server Info
+
+    ## Begin - Index
+    # for subfolders, simply adjust:
+    # `location /subfolder {`
+    # and the rewrite to use `/subfolder/index.php`
+    location / {
+        try_files $uri $uri/ /index.html /index.php;
+    }
+    ## End - Index
+
+    ## Begin - PHP
+    location ~ \.php$ {
+        # Choose either a socket or TCP/IP address
+        fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+        # fastcgi_pass 127.0.0.1:9000;
+
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+    }
+    ## End - PHP
+
+    ## Begin - Security
+    # deny all direct access for these folders
+    location ~* /(.git|cache|bin|logs|backups|tests)/.*$ { return 403; }
+    # deny running scripts inside core system folders
+    location ~* /(system|vendor)/.*\.(txt|xml|md|html|yaml|php|pl|py|cgi|twig|sh|bat)$ { return 403; }
+    # deny running scripts inside user folder
+    location ~* /user/.*\.(txt|md|yaml|php|pl|py|cgi|twig|sh|bat)$ { return 403; }
+    # deny access to specific files in the root folder
+    location ~ /(LICENSE.txt|composer.lock|composer.json|nginx.conf|web.config|htaccess.txt|\.htaccess) { return 403; }
+    ## End - Security
+}
+Now we need to ensure the default site is not loaded and we load this new grav site instead:
+
+$ cd /etc/nginx/sites-enabled/
+$ rm default
+$ ln -s ../sites-available/grav
+Then simply restart nginx and php-fpm to ensure the new changes are picked up:
+
+$ sudo /etc/init.d/nginx restart
+$ sudo /etc/init.d/php7.0-fpm restart
+Installing Grav
+The nginx configuration is expecting our Grav site to be located in /home/pi/www/grav, so now we need to create that folder structure:
+
+$ cd ~;mkdir www;cd www
+Then download Grav release package you wish to install. We are going to use the Blog Skeleton in our example, but you can use any release package or skeleton:
+
+$ wget https://github.com/getgrav/grav-skeleton-blog-site/releases/download/1.1.1/grav-skeleton-blog-site-v1.1.1.zip
+$ unzip grav-skeleton-blog-site-v1.1.1.zip
+$ mv grav-skeleton-blog-site grav
+Adjust the naming of the these files to reflect the Grav release package or skeleton you are using
+
+At this point, and if you followed all the steps properly, you should be able to point your browser at your Raspberry Pi with either the IP or the hostname you setup in your /etc/hosts file. For example: http://raspberry.
+
+Problems?
+If you have a problem reaching the webserver, there are a few things to check:
+
+You have a symbolic link called grav in your /etc/nginx/sites-enabled folder
+The grav file looks correct and matches the example pasted above
+If you receive a 'Bad Gateway' error, then check to ensure the /var/run/php/php7.0-fpm.sock file exists and is referenced correctly in the /etc/nginx/sites-available/grav file.
+Advanced - Install Netatalk 3 (Optional)
+Now you have a 100% functional Linux server that is perfect for web development. However, it's more convenient to be able to access your new server with a shared network folder from your main development machine. If you are using a Mac like I am, then you are going to want to install Netatalk 3 which is a Linux implementation of the Apple AFP network protocol. The problem however, is that by default Raspbian (even the stretch release) only provides a very old version that doesn't work well with modern versions of OS X.
+
+If you are using a Windows machine, you will need to install Samba rather than Netatalk, but this is a pretty straightforward process that has been documented elsewhere.
+
+The solution is to download the source of the latest Netatalk 3 server software, and build it for your Raspbery Pi. Perform the following steps:
+
+$ sudo apt-get install libdb-dev libevent-dev libssl-dev libgcrypt11-dev libkrb5-dev libpam0g-dev libwrap0-dev libtdb-dev libmysqlclient-dev avahi-daemon libavahi-client-dev libacl1-dev libldap2-dev libcrack2-dev libldap2-dev systemtap-sdt-dev libdbus-1-dev libdbus-glib-1-dev libglib2.0-dev tracker libtracker-sparql-1.0-dev libtracker-miner-1.0-dev
+$ cd ~;mkdir src;cd src
+$ wget wget http://downloads.sourceforge.net/project/netatalk/netatalk/3.1.8/netatalk-3.1.8.tar.bz2
+$ tar -xvf netatalk-3.1.8.tar.bz2; cd netatalk-3.1.8
+$ ./configure \
+        --with-init-style=debian-sysv \
+        --without-libevent \
+        --without-tdb \
+        --with-cracklib \
+        --enable-krbV-uam \
+        --with-pam-confdir=/etc/pam.d \
+        --with-dbus-sysconf-dir=/etc/dbus-1/system.d \
+        --with-tracker-pkgconfig-version=1.0
+$ make
+$ sudo make install
+Assuming everying built correctly you need to edit the configuration file:
+
+$ sudo vi /usr/local/etc/afp.conf
+Modify the existing file with the following content:
+
+;
+; Netatalk 3.x configuration file
+;
+
+[Global]
+; Global server settings
+
+[Homes]
+        basedir regex = /home
+
+; [My AFP Volume]
+; path = /path/to/volume
+After this point you should be good to go to restart the service:
+
+$ sudo /etc/init.d/netatalk restart
+Now you should see your server show up in the sidebar of Finder. Simply connect with your pi user and password.
+
+FYI, you can validate that things are setup correctly by typing:
+
+$ sudo /usr/local/sbin/afpd -V
+You should see output similar to the following:
+
+afpd 3.1.8 - Apple Filing Protocol (AFP) daemon of Netatalk
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version. Please see the file COPYING for further information and details.
+
+afpd has been compiled with support for these features:
+
+          AFP versions: 2.2 3.0 3.1 3.2 3.3 3.4
+         CNID backends: dbd last tdb mysql
+      Zeroconf support: Avahi
+  TCP wrappers support: Yes
+         Quota support: Yes
+   Admin group support: Yes
+    Valid shell checks: Yes
+      cracklib support: Yes
+            EA support: ad | sys
+           ACL support: Yes
+          LDAP support: Yes
+         D-Bus support: Yes
+     Spotlight support: Yes
+         DTrace probes: Yes
+
+              afp.conf: /usr/local/etc/afp.conf
+           extmap.conf: /usr/local/etc/extmap.conf
+       state directory: /usr/local/var/netatalk/
+    afp_signature.conf: /usr/local/var/netatalk/afp_signature.conf
+      afp_voluuid.conf: /usr/local/var/netatalk/afp_voluuid.conf
+       UAM search path: /usr/local/lib/netatalk//
+  Server messages path: /usr/local/var/netatalk/msg/
+==============================================
+==============================================
+Install omxplayer on the commandline
+
+up vote
+2
+down vote
+favorite
+OMXPlayer is a standalone commandline OMX player for the Raspberry PI.
+
+I cannot find it in the repository. How do I install it?
+
+raspbian omxplayer
+shareimprove this question
+edited Jun 22 '15 at 13:50
+
+goldilocks?
+42.3k1050157
+asked Jun 21 '15 at 23:24
+
+rubo77
+2051417
+Repository : github.com/popcornmix/omxplayer – dhruvvyas90 Jun 22 '15 at 3:08
+which OS you are running? – DJCrashdummy Jun 22 '15 at 5:25
+add a comment
+1 Answer
+active oldest votes
+up vote
+1
+down vote
+You can install it easily as superuser:
+
+sudo su
+First you need install required dependencies:
+
+apt-get install libpcre3 fonts-freefont-ttf
+Optionally you can install fbset, I highly recommend it if you are going to use --refresh/-r option:
+
+apt-get install fbset
+When you have installed the dependencies you can go ahead downloading the omxplayer and install it with dpkg:
+
+cd /tmp/
+wget http://omxplayer.sconde.net/builds/omxplayer_0.3.6~git20150505~b1ad23e_armhf.deb
+dpkg -i omxplayer_*_armhf.deb
+Note:
+the latest version will change, so this is just the example for the (currently latest) version from 20150505.
+
+shareimprove this answer
+
+===================================================================================
+
+Omxplayer crashes after pushbuttons I like to change movies with pushbuttons and this is code that I have so far but Omxplayer crashes after few pushbutton are push! I am new to raspberry pi and python been looking for a fix but cannot find any. Any help is welcome.
+
+The error I get is:
+
+Traceback (most recent call last):
+  File "mygpio.py", line 34, in <module>
+    player.load(vida)
+  File "build/bdist.linux-armv7l/egg/omxplayer/player.py", line 162, in load
+  File "build/bdist.linux-armv7l/egg/omxplayer/player.py", line 88, in _load_source
+  File "build/bdist.linux-armv7l/egg/omxplayer/player.py", line 134, in _setup_dbus_connection
+SystemError: DBus cannot connect to the OMXPlayer process
+#!/usr/bin/env python2
+import os.path
+from time import sleep
+import subprocess
+import os
+from omxplayer import OMXPlayer
+vida = '/home/pi/Videos/testvids/6.mov'
+vidb = '/home/pi/Videos/testvids/3.mov'
+vidc = '/home/pi/Videos/testvids/t2.mp4'
+default = '/home/pi/Videos/testvids/t1.mp4'
+
+import RPi.GPIO as GPIO
+
+
+
+#set up GPIO using BCM numbering
+
+GPIO.setmode(GPIO.BCM)
+#All Gpio's as input and pull up
+
+GPIO.setup(2, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(3, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(4, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+
+
+player = OMXPlayer(default,args=['--no-osd','--blank'],)
+
+while True:
+
+      if GPIO.input(2) ==0:
+
+           player.load(vida)
+           print("gpio 2")
+           player.play()
+           #sleep(5)
+
+      if (GPIO.input(3) == 0):
+
+            player.load(vidb)
+            print("gpio 3")
+            player.play()
+           # sleep(5)
+======================================================================================================
+
+
+   
+
+
+
+
